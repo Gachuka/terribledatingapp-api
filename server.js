@@ -22,12 +22,12 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log('POST Request')
-
   console.log(req.body)
 
   knex('user')
     .insert(req.body)
     .then((data) => {
+      console.log(data)
       res.status(201).json({message: "User has been created"});
     })
     .catch((err) => res.status(400).send(`Error creating Warehouse: ${err}`));

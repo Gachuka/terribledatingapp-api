@@ -3,6 +3,9 @@ exports.up = function (knex) {
     .createTable('user', (table) => {
       table.increments('id').primary();
       table.string('user').notNullable();
+      table.string('email').notNullable();
+      table.string('bio').notNullable();
+      table.string('ascii_pic');
       table.boolean('question_1').notNullable();
       table.boolean('question_2').notNullable();
       table.boolean('question_3').notNullable();
