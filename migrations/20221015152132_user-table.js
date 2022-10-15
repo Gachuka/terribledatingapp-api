@@ -32,5 +32,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable('save');
+  return knex.schema.dropTable('user');
 };
