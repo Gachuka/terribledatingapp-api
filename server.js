@@ -22,7 +22,15 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log('POST Request')
-  res.status(200).json({message: "Data was posted!"});
+
+  console.log(req.body)
+
+  knex('user')
+    .insert(req.body)
+    .then((data) => {
+      res.status(201).json({message: "User has been created"});
+    })
+    .catch((err) => res.status(400).send(`Error creating Warehouse: ${err}`));
 })
 
 app.listen(PORT, () => {
