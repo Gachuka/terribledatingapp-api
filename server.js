@@ -11,13 +11,22 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   console.log('GET Request')
-  // res.status(200).json({message: "Data was got!"});
   knex('user')
     .select('*')
     .then((data) => {
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).send(`Error retrieving data ${err}`));
+})
+
+app.get('/:userName', (req, res) => {
+  knex('user')
+  .select('*')
+  .where({ user: req.params.userName })
+  .then((data) => {
+    res.status(200).json(data);
+  })
+  .catch((err) => res.status(400).send(`Error retrieving data ${err}`));
 })
 
 app.post('/', (req, res) => {
